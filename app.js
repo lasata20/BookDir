@@ -12,14 +12,14 @@ if (process.env.NODE_ENV === 'development'){
 }
 app.use(express.json());
 
-// app.get('/api/v1/books', getAllBooks);
-// app.get('/api/v1/books/:id', getBookById);
-// app.post('/api/v1/books', createBook);
-// app.patch('/api/v1/books/:id', updateBook);
-// app.delete('/api/v1/books/:id', deleteBook);
-
-
 app.use('/api/v1/books', dirRouter);
 app.use('/api/v1/users', userRouter);
+
+app.all('*', (req, res, next) => {
+    res.status(404).json({
+        status: 'fail',
+        message: `${req.originalUrl} not found.`
+    })
+});
 
 module.exports = app;
