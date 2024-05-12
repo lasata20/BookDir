@@ -1,5 +1,6 @@
 const express = require('express');
 const dirController = require('../controllers/dirController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -7,13 +8,13 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(dirController.getAllBooks)
+    .get(authController.protect, dirController.getAllBooks)
     .post(dirController.createBook);
 
 router
     .route('/:id')
-    .get(dirController.getBookById)
+    .get(authController.protect, dirController.getBookById)
     .patch(dirController.updateBook)
-    .delete(dirController.deleteBook);
+    .delete(authController.protect, authController.restrictTo('admin'), dirController.deleteBook);
 
 module.exports = router;
