@@ -16,8 +16,16 @@ const dirSchema = new mongoose.Schema({
     },    
     description: {
         type: String
+    },
+    slug: {
+        type: String
+    },
+    image: {
+        type: String
     }
 });
+
+dirSchema.index({ slug: 1 });
 
 const Book = mongoose.model('Book', dirSchema);
 
