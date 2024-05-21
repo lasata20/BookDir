@@ -9,12 +9,12 @@ const router = express.Router();
 router
     .route('/')
     .get(authController.protect, dirController.getAllBooks)
-    .post(dirController.createBook);
+    .post(dirController.uploadPhoto, dirController.createBook);
 
 router
     .route('/:id')
     .get(authController.protect, dirController.getBookById)
-    .patch(dirController.updateBook)
+    .patch(dirController.uploadPhoto, dirController.updateBook)
     .delete(authController.protect, authController.restrictTo('admin'), dirController.deleteBook);
 
 module.exports = router;
