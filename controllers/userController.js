@@ -15,6 +15,23 @@ exports.getAllUsers = catchAsync( async(req, res, next) => {
     });
 });
 
+exports.getProfile = catchAsync(async (req, res, next) => {
+    const userId = req.user.id;
+    
+    const user = await User.findById(userId);
+
+    if (!user) {
+        return next(new AppError('No user found with that ID', 404));
+    }
+
+    res.status(200).json({
+        status: "success",
+        data:{
+            user
+        }
+    });
+});
+
 exports.getUserById = catchAsync(async (req, res, next) => {
     const user = await User.findById(req.params.id);
 
@@ -57,5 +74,30 @@ exports.deleteUser = catchAsync(async (req, res) => {
     res.status(200).json({
         status: 'success',
         data: null
+    }) 
+});
+
+exports.updateProfile = catchAsync(async (req, res) => {
+    const userId = req.user.id; //ensure the userId is taken from the authenticated user information 
+
+    const user = await User.findByIdAndUpdate(userId, req.body, {
+        new: true,
+        runValidators: true
+    })
+
+    res.status(200).json({
+        status: 'success',
+        message: 'User Updated Successfully.'
+    })
+});
+
+exports.deleteProfile = catchAsync(async (req, res) => {
+    const userId = req.user.id;
+
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).json({
+        status: 'success',
+        message: 'User Deleted Successfully'
     }) 
 });
