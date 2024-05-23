@@ -1063,6 +1063,16 @@ div.description-box {
   border-radius: 5px;
 }
 
+.book-form {
+  margin: 5rem;
+  width: -webkit-fill-available;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  padding: 5rem 5rem;
+  border-radius: 5px;
+}
+
 .form__input {
   display: block;
   font-family: inherit;
@@ -1083,6 +1093,24 @@ div.description-box {
   /* Pseudo element (a visible thing that isn't really in the DOM).
       Also needs -ms- */
 }
+
+.description {
+  height: 15rem;
+}
+
+.textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+
 .form__input:focus {
   outline: none;
   border-bottom: 3px solid #936fd5;
