@@ -61,8 +61,20 @@ exports.updateUserData = catchAsync(async (req, res,next) => {
 });
 
 
-// exports.createBookForm = (req, res) => {
-//   res.status(200).render('admin', {
-//     title: 'Add books to directory'
-//   });
-// };
+exports.getManageDirectory = (req, res) => {
+  res.status(200).render('directory', {
+    title: 'Add books to directory'
+  });
+};
+
+exports.createBookForm = (req, res) => {
+  res.status(200).render('createBook', {
+
+  })
+};
+
+exports.getManageUsers = (req, res) => {
+  res.status(200).render('user', {
+    title: 'Add books to directory'
+  });
+};
